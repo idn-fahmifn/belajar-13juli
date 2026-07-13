@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Hallo ini adalah halaman mobil.</h1>
-    <p>detail lengkap mobil, <a href="{{route('halaman.mobil')}}">avanza</a> </p>
+    <p>detail lengkap mobil, <a href="{{route('halaman.detail', 'avanza')}}">avanza</a> </p>
+    <p>detail lengkap mobil, <a href="{{route('mobil.sport')}}">Sport</a> </p>
 </body>
 </html>
