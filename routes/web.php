@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Requests\MobilRequest;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,28 +32,24 @@ Route::middleware('login')->group(function () {
 
 });
 
-Route::post('/proses', function(Request $request){
+Route::post('/proses', function(MobilRequest $request){
 
-    $request->validate([
-        'name' => ['required', 'min:5', 'max:10', 'string'],
-        'tipe' => ['required', 'min:5', 'max:10', 'string'],
-        'warna' => ['required', 'in:merah,silver,hitam'],
-        'bahan_bakar' => ['required', 'integer', 'min:1', 'max:150'],
-        'jenis' => ['required', 'in:suv,electric,hybrid'],
-    ], [
-        'name.required' => 'Input ini wajib diisi',
-        'name.min' => 'masukan minimal 5 karakter',
-        'name.max' => 'masukan maksimal 10 karakter',
-        'name.string' => 'Input berbentuk karakter atau kata',
+    $data = $request->validated();
 
-        'tipe.required' => 'Input ini wajib diisi',
-        'tipe.min' => 'masukan minimal 5 karakter',
-        'tipe.max' => 'masukan maksimal 10 karakter',
-        'tipe.string' => 'Input berbentuk karakter atau kata',
+    // $request->validate( [
+    //     'name.required' => 'Input ini wajib diisi',
+    //     'name.min' => 'masukan minimal 5 karakter',
+    //     'name.max' => 'masukan maksimal 10 karakter',
+    //     'name.string' => 'Input berbentuk karakter atau kata',
 
-        'warna.required' => 'Input ini wajib diisi',
-        'warna.in' => 'Input yang diizinkan (merah, silver dan hitam)',
-    ]);
+    //     'tipe.required' => 'Input ini wajib diisi',
+    //     'tipe.min' => 'masukan minimal 5 karakter',
+    //     'tipe.max' => 'masukan maksimal 10 karakter',
+    //     'tipe.string' => 'Input berbentuk karakter atau kata',
+
+    //     'warna.required' => 'Input ini wajib diisi',
+    //     'warna.in' => 'Input yang diizinkan (merah, silver dan hitam)',
+    // ]);
 
 })->name('proses.mobil');
 
