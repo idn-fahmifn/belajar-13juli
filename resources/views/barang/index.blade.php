@@ -23,18 +23,23 @@ Data lengkap barang.
             <th>Harga</th>
             <th>Stok</th>
             <th>Pilihan</th>
-
-        <tbody>
-            <tr>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-            </tr>
-        </tbody>
         </thead>
+        <tbody>
+            @forelse ($data as $row)
+            <tr>
+                <td>{{$row->nama_barang}}</td>
+                <td>{{ $row->merk }}</td>
+                <td>IDR. {{number_format($row->harga)}}</td>
+                <td>{{$row->stok}}</td>
+                <td></td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="5" class="text-center py-4">Data barang tidak ditemukan</td>
+            </tr>
+            @endforelse
 
+        </tbody>
     </table>
 </div>
 @endsection
