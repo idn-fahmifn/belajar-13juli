@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Requests\MobilRequest;
+use App\Http\Controllers\{BarangController, MobilController, PhotoController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,27 +31,13 @@ Route::middleware('login')->group(function () {
 
 });
 
-Route::post('/proses', function(MobilRequest $request){
+Route::post('/proses', [MobilController::class, 'mobil'])->name('proses.mobil');
+Route::get('/motor', [MobilController::class, 'motor'])->name('halaman.motor');
 
-    $data = $request->validated();
+// jika menggunakan controller resource - mau bikin CRUD
+Route::resource('photos', PhotoController::class);
 
-    // $request->validate( [
-    //     'name.required' => 'Input ini wajib diisi',
-    //     'name.min' => 'masukan minimal 5 karakter',
-    //     'name.max' => 'masukan maksimal 10 karakter',
-    //     'name.string' => 'Input berbentuk karakter atau kata',
-
-    //     'tipe.required' => 'Input ini wajib diisi',
-    //     'tipe.min' => 'masukan minimal 5 karakter',
-    //     'tipe.max' => 'masukan maksimal 10 karakter',
-    //     'tipe.string' => 'Input berbentuk karakter atau kata',
-
-    //     'warna.required' => 'Input ini wajib diisi',
-    //     'warna.in' => 'Input yang diizinkan (merah, silver dan hitam)',
-    // ]);
-
-})->name('proses.mobil');
-
+Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
 
 // shortcut menampikan (testing halaman) - menampilkan halaman statis
-Route::view('tampilan', 'welcome');
+Route::view('tampilan', 'template.template');
