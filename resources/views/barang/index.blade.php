@@ -31,7 +31,9 @@ Data lengkap barang.
                 <td>{{ $row->merk }}</td>
                 <td>IDR. {{number_format($row->harga)}}</td>
                 <td>{{$row->stok}}</td>
-                <td></td>
+                <td>
+                    <a href="{{route('barang.detail', $row->id)}}" class="btn btn-success btn-sm">detail</a>
+                </td>
             </tr>
             @empty
             <tr>
@@ -41,5 +43,8 @@ Data lengkap barang.
 
         </tbody>
     </table>
+    <div class="mt-4">
+        {{ $data }}
+    </div>
 </div>
 @endsection
