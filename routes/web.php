@@ -38,6 +38,7 @@ Route::get('/motor', [MobilController::class, 'motor'])->name('halaman.motor');
 Route::resource('photos', PhotoController::class);
 
 Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
+Route::get('/barang/{param}', [BarangController::class, 'detail'])->name('barang.detail');
 
 // shortcut menampikan (testing halaman) - menampilkan halaman statis
 Route::view('tampilan', 'template.template');
